@@ -71,6 +71,8 @@ jobs:
 
     steps:
       - uses: actions/download-artifact@v2
+        with:
+          path: downloaded-bins
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -78,4 +80,4 @@ jobs:
           prerelease: false
           automatic_release_tag: "latest"
           files: |
-            bin/*
+            downloaded-bins/*
