@@ -1,0 +1,21 @@
+{
+  "name": "pino-pretty.bin",
+  "version": "0.0.1",
+  "description": "Bundles pino-pretty as binary exeutable",
+  "scripts": {
+    "build::node14-linux-x64": "node build.js node14-linux-x64",
+    "build::node14-windows-x64": "node build.js node14-windows-x64",
+    "build::node14-macos-x64": "node build.js node14-macos-x64"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "pino-pretty": "^5.1.1"
+  },
+  "devDependencies": {
+    "pkg": "^5.3.0"
+  },
+  "pkg": {
+    "outputPath": "bin"
+  }
+}

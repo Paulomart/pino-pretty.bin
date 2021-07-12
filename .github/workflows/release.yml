@@ -1,0 +1,68 @@
+name: Build binaries & release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+
+  node14-linux-x64:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - run: npm ci
+      - run: npm run build::node14-linux-x64
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          files: |
+            bin/*
+
+  node14-windows-x64:
+    runs-on: windows-2019
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - run: npm ci
+      - run: npm run build::node14-windows-x64
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          files: |
+            bin/*
+
+  node14-macos-x64:
+    runs-on: macos-10.15
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - run: npm ci
+      - run: npm run build::node14-macos-x64
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          files: |
+            bin/*
